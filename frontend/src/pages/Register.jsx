@@ -31,7 +31,7 @@ export default function Register() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
+      <div className="bg-white dark:bg-gray-800 shadow p-6 rounded-xl w-full max-w-md mx-auto">
         <h1 className="text-2xl font-bold text-center mb-6">Register</h1>
 
         {error && (
@@ -46,7 +46,7 @@ export default function Register() {
               name="username"
               value={form.username}
               onChange={handleChange}
-              className="w-full px-3 py-2 border rounded-lg focus:ring focus:ring-blue-300"
+              className="w-full p-3 border rounded-md bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
               placeholder="Enter username"
               required
             />
@@ -59,7 +59,7 @@ export default function Register() {
               name="email"
               value={form.email}
               onChange={handleChange}
-              className="w-full px-3 py-2 border rounded-lg focus:ring focus:ring-blue-300"
+              className="w-full p-3 border rounded-md bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
               placeholder="Enter email"
               required
             />
@@ -72,7 +72,7 @@ export default function Register() {
               name="password"
               value={form.password}
               onChange={handleChange}
-              className="w-full px-3 py-2 border rounded-lg focus:ring focus:ring-blue-300"
+              className="w-full p-3 border rounded-md bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
               placeholder="Enter password"
               required
             />

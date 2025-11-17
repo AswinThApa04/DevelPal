@@ -66,23 +66,23 @@ export default function EditTask() {
   if (loading) return <p className="p-8 text-gray-500">Loading...</p>;
 
   return (
-    <div className="max-w-2xl mx-auto p-8">
+    <div className="max-w-2xl mx-auto p-8 bg-white dark:bg-gray-900 rounded-xl shadow">
       <h2 className="text-3xl font-bold mb-6">Edit Task</h2>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label className="block font-medium mb-1">Title</label>
+          <label className="block font-medium text-gray-700 dark:text-gray-300">Title</label>
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full p-3 border rounded-md"
+            className="w-full p-3 border rounded-md bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200"
             required
           />
         </div>
 
         <div>
-          <label className="block font-medium mb-1">Description</label>
+          <label className="block font-medium text-gray-700 dark:text-gray-300">Description</label>
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
@@ -91,11 +91,11 @@ export default function EditTask() {
         </div>
 
         <div>
-          <label className="block font-medium mb-1">Priority</label>
+          <label className="block font-medium text-gray-700 dark:text-gray-300">Priority</label>
           <select
             value={priority}
             onChange={(e) => setPriority(e.target.value)}
-            className="w-full p-3 border rounded-md"
+            className="w-full p-3 border rounded-md bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200"
           >
             <option>Low</option>
             <option>Medium</option>
@@ -104,11 +104,11 @@ export default function EditTask() {
         </div>
 
         <div>
-          <label className="block font-medium mb-1">Status</label>
+          <label className="block font-medium text-gray-700 dark:text-gray-300">Status</label>
           <select
             value={status}
             onChange={(e) => setStatus(e.target.value)}
-            className="w-full p-3 border rounded-md"
+            className="w-full p-3 border rounded-md bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200"
           >
             <option value="pending">Pending</option>
             <option value="completed">Completed</option>
@@ -116,14 +116,14 @@ export default function EditTask() {
         </div>
 
         <div>
-          <label className="block font-medium mb-1">
+          <label className="block font-medium text-gray-700 dark:text-gray-300">
             Tags (comma separated)
           </label>
           <input
             type="text"
             value={tags}
             onChange={(e) => setTags(e.target.value)}
-            className="w-full p-3 border rounded-md"
+            className="w-full p-3 border rounded-md bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200"
           />
         </div>
 

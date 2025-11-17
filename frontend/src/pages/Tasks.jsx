@@ -68,7 +68,7 @@ export default function Tasks() {
             {tasks.map((task) => (
               <div
                 key={task._id}
-                className="bg-white p-5 shadow rounded-xl border hover:shadow-lg transition-all duration-200"
+                className="bg-white dark:bg-gray-800 dark:border-gray-700 p-5 shadow rounded-xl border hover:shadow-lg transition-all duration-200"
               >
                 <div className="flex justify-between items-start">
                   <h3 className="text-xl font-semibold">{task.title}</h3>
@@ -86,14 +86,14 @@ export default function Tasks() {
                     {task.priority}
                   </span>
                 </div>
-                <p className="text-gray-600 mt-2">{task.description}</p>
+                <p className="text-gray-600  dark:text-gray-300 mt-2">{task.description}</p>
                 <div className="mt-3">
                   <span
                     className={`text-sm font-semibold capitalize
                       ${
                         task.status === "completed"
-                          ? "text-green-600"
-                          : "text-yellow-600"
+                          ? "text-green-600 dark:text-green-400"
+                          : "text-yellow-600 dark:text-yellow-400"
                       }`}
                   >
                     {task.status}
@@ -102,7 +102,7 @@ export default function Tasks() {
                 <div className="mt-4 flex gap-3">
                   <Link
                     to={`/edit-task/${task._id}`}
-                    className="px-3 py-1 bg-gray-200 text-sm rounded-md hover:bg-gray-300"
+                    className="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-sm dark:text-gray-200 rounded-md hover:bg-gray-300 dark:hover:bg-gray-600"
                   >
                     Edit
                   </Link>

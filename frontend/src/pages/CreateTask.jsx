@@ -42,26 +42,26 @@ export default function CreateTask() {
   };
 
   return (
-    <div className="p-8 max-w-xl mx-auto">
+    <div className="max-w-2xl mx-auto p-8 bg-white dark:bg-gray-900 rounded-xl shadow">
       <h2 className="text-3xl font-semibold mb-6">Create New Task</h2>
 
       <form className="space-y-4" onSubmit={handleSubmit}>
         
         <div>
-          <label className="block font-medium mb-1">Title</label>
+          <label className="block font-medium text-gray-700 dark:text-gray-300">Title</label>
           <input
             type="text"
             name="title"
             required
             value={formData.title}
             onChange={handleChange}
-            className="w-full p-2 border rounded-md"
+            className="w-full p-3 border rounded-md bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200"
             placeholder="Task title"
           />
         </div>
 
         <div>
-          <label className="block font-medium mb-1">Description</label>
+          <label className="block font-medium text-gray-700 dark:text-gray-300">Description</label>
           <textarea
             name="description"
             value={formData.description}
@@ -72,7 +72,7 @@ export default function CreateTask() {
         </div>
 
         <div>
-          <label className="block font-medium mb-1">Priority</label>
+          <label className="block font-medium text-gray-700 dark:text-gray-300">Priority</label>
           <select
             name="priority"
             value={formData.priority}
@@ -86,13 +86,13 @@ export default function CreateTask() {
         </div>
 
         <div>
-          <label className="block font-medium mb-1">Tags (comma separated)</label>
+          <label className="block font-medium text-gray-700 dark:text-gray-300">Tags (comma separated)</label>
           <input
             type="text"
             name="tags"
             value={formData.tags}
             onChange={handleChange}
-            className="w-full p-2 border rounded-md"
+            className="w-full p-3 border rounded-md bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200"
             placeholder="give a tag"
           />
         </div>

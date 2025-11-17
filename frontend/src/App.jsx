@@ -6,6 +6,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import CreateTask from "./pages/CreateTask";
 import EditTask from "./pages/EditTask"; 
 import Tasks from "./pages/Tasks";
+import DarkToggle from "./components/DarkToggle";
 
 
 function App() {
@@ -20,6 +21,9 @@ function App() {
         <Route path="/edit-task/:id" element={<ProtectedRoute><EditTask /></ProtectedRoute>}/>
         <Route path="*" element={<Login />} />
       </Routes>
+      <div className="fixed top-4 right-4 z-50">
+        <DarkToggle />
+      </div>
     </BrowserRouter>
   );
 }
