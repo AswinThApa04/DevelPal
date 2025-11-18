@@ -95,6 +95,17 @@ const toggleTaskStatus = async (req, res) => {
 
   res.status(200).json(updatedTask);
 };
+
+const getTaskStats = async (req, res) => {
+  const userId = req.user._id;
+
+  const total = await Task.countDocuments({ user: userId });
+  const completed = await Task.countDocuments({ user: userId, status: "completed" });
+  const pending = await Task.countDocuments({ user: userId, status: "pending" });
+
+  res.json({ total, completed, pending });
+};
+
 module.exports ={
     getTasks,
     createTask,
@@ -102,4 +113,5 @@ module.exports ={
     deleteTask,
     getTaskById,
     toggleTaskStatus,
+    getTaskStats,
   };

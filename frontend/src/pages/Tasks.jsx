@@ -43,6 +43,7 @@ export default function Tasks() {
   useEffect(() => {
     if (!token) return;
     fetchTasks();
+    localStorage.setItem("refreshDashboard", Date.now());
   }, [token]);
 
   return (
@@ -123,7 +124,12 @@ export default function Tasks() {
                   >
                     {task.status === "completed" ? "Mark Pending" : "Mark Completed"}
                   </button>
-
+                  <Link 
+                    to="/pomodoro" 
+                    state={{ currentTask: task }}
+                    className="px-3 py-1 bg-purple-600 text-white text-sm rounded-md hover:bg-purple-700">
+                    Focus
+                  </Link>
                 </div>
               </div>
             ))}

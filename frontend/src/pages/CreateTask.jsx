@@ -66,7 +66,7 @@ export default function CreateTask() {
             name="description"
             value={formData.description}
             onChange={handleChange}
-            className="w-full p-2 border rounded-md"
+            className="w-full p-3 border rounded-md bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200"
             placeholder="Task description"
           />
         </div>
@@ -77,7 +77,7 @@ export default function CreateTask() {
             name="priority"
             value={formData.priority}
             onChange={handleChange}
-            className="w-full p-2 border rounded-md"
+            className="w-full p-3 border rounded-md bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200"
           >
             <option value="low">Low</option>
             <option value="medium">Medium</option>
