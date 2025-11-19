@@ -55,8 +55,52 @@ const getUserProfile = async (req, res) => {
   res.status(200).json(req.user);
 };
 
+const updateUser = async (req, res) => {
+  const user = await User.findById(req.user._id);
+
+  if (!user) {
+    res.status(404);
+    throw new Error("User not found");
+  }
+
+  user.username = req.body.username || user.username;
+
+  const updatedUser = await user.save();
+
+  res.json({
+    _id: updatedUser._id,
+    username: updatedUser.username,
+    email: updatedUser.email,
+  });
+};
+
+const changePassword = async (req, res) => {
+  const { currentPassword, newPassword } = req.body;
+
+  const user = await User.findById(req.user._id);
+
+  if (!user) {
+    res.status(404);
+    throw new Error("User not found");
+  }
+
+  const isMatch = await user.matchPassword(currentPassword);
+  if (!isMatch) {
+    res.status(400);
+    throw new Error("Current password is incorrect");
+  }
+
+  user.password = newPassword;
+  await user.save();
+
+  res.json({ message: "Password updated successfully" });
+};
+
+
 module.exports = {
   registerUser,
   loginUser,
   getUserProfile,
+  updateUser,
+  changePassword
 };

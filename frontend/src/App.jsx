@@ -9,6 +9,8 @@ import EditTask from "./pages/EditTask";
 import Tasks from "./pages/Tasks";
 import DarkToggle from "./components/DarkToggle";
 import Home from "./pages/Home";
+import Profile from "./pages/Profile";
+
 
 function App() {
   return (
@@ -23,6 +25,7 @@ function App() {
         <Route path="/edit-task/:id" element={<ProtectedRoute><EditTask /></ProtectedRoute>}/>
         <Route path="*" element={<Login />} />
         <Route path="/" element={<Home />} />
+        <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>}/>
       </Routes>
       <div className="fixed top-4 right-4 z-50">
         <DarkToggle />
