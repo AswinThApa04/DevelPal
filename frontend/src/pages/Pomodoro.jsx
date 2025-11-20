@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import API from "../api/axios";
 import { useAuth } from "../context/AuthContext";
+import { Link } from "react-router-dom";
 
 export default function Pomodoro() {
   const { token } = useAuth();
@@ -17,7 +18,9 @@ export default function Pomodoro() {
   const [timeLeft, setTimeLeft] = useState(DURATIONS.focus);
   const [isRunning, setIsRunning] = useState(false);
   const [sessionsCompleted, setSessionsCompleted] = useState(0);
-  const [taskName, setTaskName] = useState(currentTask?.title || "Pomodoro Session");
+  const [taskName, setTaskName] = useState(
+    currentTask?.title || "Pomodoro Session"
+  );
   const [userTasks, setUserTasks] = useState([]);
 
   const fetchTasks = async () => {
@@ -38,11 +41,7 @@ export default function Pomodoro() {
   useEffect(() => {
     if (timeLeft === 0) {
       const nextMode =
-        mode === "focus"
-          ? "short"
-          : mode === "short"
-          ? "focus"
-          : "focus";
+        mode === "focus" ? "short" : mode === "short" ? "focus" : "focus";
 
       setMode(nextMode);
       setTimeLeft(DURATIONS[nextMode]);
@@ -81,6 +80,14 @@ export default function Pomodoro() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[80vh] p-4">
+      <Link
+        to="/dashboard"
+        className="absolute top-6 left-6 px-4 py-2 bg-blue-600 text-white rounded-lg 
+             hover:bg-blue-700 shadow-md transition"
+      >
+        ← Back to Dashboard
+      </Link>
+
       <div className="mb-6 text-center animate-fade-in-down">
         <span className="text-gray-500 dark:text-gray-400">
           {currentTask ? "Focusing on:" : "Current Session:"}
@@ -92,15 +99,19 @@ export default function Pomodoro() {
       </div>
 
       {!currentTask && (
-        <div className="mb-4">
-          <label className="text-gray-500 dark:text-gray-400 text-sm block mb-1">
+        <div className="mb-4 w-full flex flex-col items-center">
+          <label className="text-gray-500 dark:text-gray-400 text-sm mb-1">
             Select a task (Optional)
           </label>
+
           <select
-            className="p-2 border rounded-md dark:bg-gray-800 dark:text-white"
+            className="p-2 border rounded-md dark:bg-gray-800 dark:text-white bg-white 
+               text-gray-700 w-60 text-center"
             onChange={(e) =>
               setTaskName(
-                e.target.value === "__none" ? "Pomodoro Session" : e.target.value
+                e.target.value === "__none"
+                  ? "Pomodoro Session"
+                  : e.target.value
               )
             }
           >
