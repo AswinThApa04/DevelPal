@@ -30,7 +30,7 @@ const taskSchema = mongoose.Schema(
       type: String,
       enum: ['pending', 'completed'],
       default: 'pending',
-    },
+    }
   },
   {
     timestamps: true,

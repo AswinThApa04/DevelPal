@@ -14,7 +14,6 @@ import { useAuth } from "../context/AuthContext";
 export default function Sidebar() {
   const { logout } = useAuth();
   const location = useLocation();
-
   const [collapsed, setCollapsed] = useState(false);
 
   const menu = [
@@ -43,24 +42,24 @@ export default function Sidebar() {
   return (
     <div
       className={`
-        h-screen bg-white dark:bg-gray-800 shadow-lg p-4 flex flex-col 
+        h-screen bg-white dark:bg-gray-800 shadow-lg border-r border-gray-200 dark:border-gray-700 p-4 flex flex-col 
         transition-all duration-300 
         ${collapsed ? "w-20" : "w-64"}
       `}
     >
       <button
         onClick={() => setCollapsed(!collapsed)}
-        className="absolute top-4 -right-4 bg-white dark:bg-gray-700 shadow p-1 rounded-full"
+        className="absolute top-6 -right-3 w-7 h-7 bg-white dark:bg-gray-700 shadow p-1 rounded-full flex items-center justify-center hover:scale-105 transition"
       >
         {collapsed ? (
-          <ChevronRightIcon className="w-5" />
+          <ChevronRightIcon className="w-4 text-gray-700 dark:text-gray-300" />
         ) : (
-          <ChevronLeftIcon className="w-5" />
+          <ChevronLeftIcon className="w-4 text-gray-700 dark:text-gray-300" />
         )}
       </button>
 
       <h1
-        className={`text-2xl font-bold text-blue-600 dark:text-blue-400 mb-10 transition-all 
+        className={`text-2xl font-bold text-blue-600 dark:text-blue-400 mb-10 transition-all duration-200 whitespace-nowrap
           ${collapsed ? "opacity-0" : "opacity-100"}
         `}
       >
@@ -68,24 +67,34 @@ export default function Sidebar() {
       </h1>
 
       <nav className="space-y-3 flex-1">
-        {menu.map((item) => (
-          <Link
-            key={item.name}
-            to={item.path}
-            className={`flex items-center gap-4 px-4 py-3 rounded-lg font-medium 
+        {menu.map((item) => {
+          const active = location.pathname === item.path;
+          return (
+            <Link
+              key={item.name}
+              to={item.path}
+              className={`relative flex items-center gap-4 px-4 py-3 rounded-lg font-medium 
               text-gray-700 dark:text-gray-300 hover:bg-blue-50 
-              dark:hover:bg-gray-700 transition-all
-              ${
-                location.pathname === item.path
-                  ? "bg-blue-100 dark:bg-gray-700"
-                  : ""
-              }
-            `}
-          >
-            {item.icon}
-            {!collapsed && <span>{item.name}</span>}
-          </Link>
-        ))}
+              dark:hover:bg-gray-700 transition-all duration-200 group dark:hover
+              ${active?"bg-blue-100 dark:bg-gray-700": ""}
+              `}
+            >
+              {active && (
+                <span className="absolute left-0 top-0 h-full w-1 bg-blue-600 dark:bg-blue-400 rounded-r-lg"></span>
+              )}
+              <div className="transition-transform duration-200 group-hover:translate-x-1">
+                {item.icon}
+              </div>
+              {!collapsed && <span>{item.name}</span>}
+              {collapsed && (
+                <span className="absolute left-20 px-2 py-1 bg-gray-900 text-white text-sm rounded-md shadow-lg opacity-0 group-hover:opacity-100
+                transition ml-2 z-50">
+                  {item.name}
+                </span>
+              )}
+            </Link>
+          );
+        })}
       </nav>
 
       <button
